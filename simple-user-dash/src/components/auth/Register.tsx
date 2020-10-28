@@ -3,14 +3,7 @@ import { Formik, Field, Form } from 'formik';
 import { TextField, Button } from '@material-ui/core';
 const Register: React.FC = () => {
   return (
-    <div
-      style={{
-        margin: '300px auto',
-        padding: '20px',
-        backgroundColor: '#fafafa',
-        width: '300px',
-      }}
-    >
+    <div>
       <Formik
         initialValues={{ username: '', password: '', confirmPassword: '' }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
