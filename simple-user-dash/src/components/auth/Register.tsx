@@ -1,8 +1,57 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Field, Form } from 'formik';
+import { TextField, Button } from '@material-ui/core';
+import { AuthForm } from './formStyles';
 
 const Register: React.FC = () => {
-  return <div></div>;
+  return (
+    <AuthForm>
+      <h2>Register</h2>
+      <Formik
+        initialValues={{ username: '', password: '', confirmPassword: '' }}
+        onSubmit={(data, { setSubmitting, resetForm }) => {
+          setSubmitting(true);
+          // some async process
+          console.log(data);
+          resetForm();
+          setSubmitting(false);
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <Field
+              placeholder="username"
+              name="username"
+              type="input"
+              as={TextField}
+            />
+            <div>
+              <Field
+                placeholder="password"
+                name="password"
+                type="input"
+                as={TextField}
+              />
+            </div>
+            <div>
+              <Field
+                placeholder="confirm password"
+                name="confirmPassword"
+                type="input"
+                as={TextField}
+              />
+            </div>
+
+            <div>
+              <Button disabled={isSubmitting} type="submit">
+                Submit
+              </Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </AuthForm>
+  );
 };
 
 export default Register;
