@@ -1,9 +1,11 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import { TextField, Button } from '@material-ui/core';
+import { AuthForm } from './formStyles';
+
 const Register: React.FC = () => {
   return (
-    <div>
+    <AuthForm>
       <Formik
         initialValues={{ username: '', password: '', confirmPassword: '' }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
@@ -14,7 +16,7 @@ const Register: React.FC = () => {
           setSubmitting(false);
         }}
       >
-        {({ values, isSubmitting }) => (
+        {({ isSubmitting }) => (
           <Form>
             <Field
               placeholder="username"
@@ -47,7 +49,7 @@ const Register: React.FC = () => {
           </Form>
         )}
       </Formik>
-    </div>
+    </AuthForm>
   );
 };
 
