@@ -6,6 +6,7 @@ import { AuthForm } from './formStyles';
 const Register: React.FC = () => {
   return (
     <AuthForm>
+      <h2>Register</h2>
       <Formik
         initialValues={{ username: '', password: '', confirmPassword: '' }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
