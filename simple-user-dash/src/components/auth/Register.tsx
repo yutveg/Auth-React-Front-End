@@ -3,7 +3,9 @@ import { Formik, Field, Form } from 'formik';
 import { TextField, Button } from '@material-ui/core';
 import { AuthForm } from './formStyles';
 import { useRegisterMutation } from '../../generated/graphql';
-const Register: React.FC = () => {
+import { RouteComponentProps } from 'react-router-dom';
+
+const Register: React.FC<RouteComponentProps> = ({ history }) => {
   const [register] = useRegisterMutation();
 
   return (
@@ -23,6 +25,7 @@ const Register: React.FC = () => {
           });
           console.log(response);
           setSubmitting(false);
+          history.push('/');
         }}
       >
         {({ isSubmitting }) => (
