@@ -1,10 +1,6 @@
 import React from 'react';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
-import Dashboard from './components/dash/Dashboard';
-import { gql, useQuery } from '@apollo/react-hooks';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useHelloQuery } from './generated/graphql';
+import Routes from './Routes';
 
 const App: React.FC = () => {
   const { data, loading } = useHelloQuery();
@@ -14,14 +10,7 @@ const App: React.FC = () => {
   }
   return (
     <div className="App">
-      {data.hello}
-      {/* <BrowserRouter>
-        <Switch>
-          <Route path={`/dashboard`} component={Dashboard} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </Switch>
-      </BrowserRouter> */}
+      <Routes />
     </div>
   );
 };

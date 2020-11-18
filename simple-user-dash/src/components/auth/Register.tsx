@@ -2,25 +2,34 @@ import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import { TextField, Button } from '@material-ui/core';
 import { AuthForm } from './formStyles';
-
+import { useRegisterMutation } from '../../generated/graphql';
 const Register: React.FC = () => {
+  const [register] = useRegisterMutation();
+
   return (
     <AuthForm>
       <Formik
-        initialValues={{ username: '', password: '', confirmPassword: '' }}
-        onSubmit={(data, { setSubmitting, resetForm }) => {
+        initialValues={{ email: '', password: '', confirmPassword: '' }}
+        onSubmit={async (data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
-          // some async process
-          console.log(data);
-          resetForm();
+          console.log('form submitted');
+          let email = data.email;
+          let password = data.password;
+          const response = await register({
+            variables: {
+              email,
+              password,
+            },
+          });
+          console.log(response);
           setSubmitting(false);
         }}
       >
         {({ isSubmitting }) => (
           <Form>
             <Field
-              placeholder="username"
-              name="username"
+              placeholder="email"
+              name="email"
               type="input"
               as={TextField}
             />
@@ -28,7 +37,7 @@ const Register: React.FC = () => {
               <Field
                 placeholder="password"
                 name="password"
-                type="input"
+                type="password"
                 as={TextField}
               />
             </div>
@@ -36,7 +45,7 @@ const Register: React.FC = () => {
               <Field
                 placeholder="confirm password"
                 name="confirmPassword"
-                type="input"
+                type="password"
                 as={TextField}
               />
             </div>
