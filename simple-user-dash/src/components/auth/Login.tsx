@@ -2,25 +2,35 @@ import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import { TextField, Button } from '@material-ui/core';
 import { AuthForm } from './formStyles';
+import { useLoginMutation } from '../../generated/graphql';
+import { RouteComponentProps } from 'react-router-dom';
 
-const Login: React.FC = () => {
+const Login: React.FC<RouteComponentProps> = ({ history }) => {
+  const [login] = useLoginMutation();
   return (
     <AuthForm>
       <Formik
-        initialValues={{ username: '', password: '' }}
-        onSubmit={(data, { setSubmitting, resetForm }) => {
+        initialValues={{ email: '', password: '' }}
+        onSubmit={async (data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
-          // some async process
-          console.log(data);
-          resetForm();
+          let email = data.email;
+          let password = data.password;
+          const response = await login({
+            variables: {
+              email,
+              password,
+            },
+          });
+          console.log(response);
           setSubmitting(false);
+          history.push('/');
         }}
       >
         {({ isSubmitting }) => (
           <Form>
             <Field
-              placeholder="username"
-              name="username"
+              placeholder="email"
+              name="email"
               type="input"
               as={TextField}
             />
@@ -28,7 +38,7 @@ const Login: React.FC = () => {
               <Field
                 placeholder="password"
                 name="password"
-                type="input"
+                type="password"
                 as={TextField}
               />
             </div>
