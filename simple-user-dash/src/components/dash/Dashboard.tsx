@@ -11,9 +11,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <div>
-      <h1>need to login or register?</h1>
       <Link to="/login">Login</Link>
       <Link to="/register">Register</Link>
+      <Link to="/bye">Bye</Link>
       <ul>
         {data.users.map((user) => (
           <div key={user.id}>{user.email}</div>

@@ -1,11 +1,22 @@
 import React from 'react';
+import { useByeQuery } from '../../generated/graphql';
 
-interface Props {
-  prop: string;
-}
+const Bye: React.FC = () => {
+  const { data, loading, error } = useByeQuery();
 
-const Component: React.FC<Props> = ({ prop }: Props) => {
+  if (loading) {
+    return <div>loading...</div>;
+  }
+
+  if (error) {
+    console.log(error);
+    return <div>err</div>;
+  }
+  if (!data) {
+    return <div>no data</div>;
+  }
+
   return <div></div>;
 };
 
-export default Component;
+export default Bye;
