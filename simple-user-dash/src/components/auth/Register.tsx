@@ -12,7 +12,7 @@ const Register: React.FC<RouteComponentProps> = ({ history }) => {
     <AuthForm>
       <Formik
         initialValues={{ email: '', password: '', confirmPassword: '' }}
-        onSubmit={async (data, { setSubmitting, resetForm }) => {
+        onSubmit={async (data, { setSubmitting }) => {
           setSubmitting(true);
           console.log('form submitted');
           let email = data.email;

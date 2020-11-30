@@ -12,7 +12,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
     <AuthForm>
       <Formik
         initialValues={{ email: '', password: '' }}
-        onSubmit={async (data, { setSubmitting, resetForm }) => {
+        onSubmit={async (data, { setSubmitting }) => {
           setSubmitting(true);
           let email = data.email;
           let password = data.password;
