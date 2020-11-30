@@ -16,7 +16,7 @@ const Bye: React.FC = () => {
     return <div>no data</div>;
   }
 
-  return <div></div>;
+  return <h1>{data.bye}</h1>;
 };
 
 export default Bye;
