@@ -4,6 +4,7 @@ import { TextField, Button } from '@material-ui/core';
 import { AuthForm } from './formStyles';
 import { useLoginMutation } from '../../generated/graphql';
 import { RouteComponentProps } from 'react-router-dom';
+import { setAccessToken } from '../../accessToken';
 
 const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [login] = useLoginMutation();
@@ -21,6 +22,9 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
               password,
             },
           });
+          if (response && response.data) {
+            setAccessToken(response.data.login.accessToken);
+          }
           console.log(response);
           setSubmitting(false);
           history.push('/');
