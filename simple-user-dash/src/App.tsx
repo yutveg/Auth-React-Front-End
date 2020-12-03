@@ -12,6 +12,7 @@ const App: React.FC = () => {
     })
       .then(async (res) => {
         const { accessToken } = await res.json();
+        console.log(res, 'our res');
         setAccessToken(accessToken);
         setLoading(false);
       })
