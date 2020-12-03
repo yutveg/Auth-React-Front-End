@@ -25,7 +25,6 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
           if (response && response.data) {
             setAccessToken(response.data.login.accessToken);
           }
-          console.log(response);
           setSubmitting(false);
           history.push('/');
         }}

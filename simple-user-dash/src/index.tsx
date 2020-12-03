@@ -57,7 +57,7 @@ const client = new ApolloClient({
       handleFetch: (accessToken) => {
         setAccessToken(accessToken);
       },
-      handleResponse: (operation, accessTokenField) => (response) => {
+      handleResponse: (operation, accessTokenField) => (response: any) => {
         // here you can parse response, handle errors, prepare returned token to
         // further operations
 
@@ -65,7 +65,7 @@ const client = new ApolloClient({
         // {
         //    access_token: 'token string here'
         // }
-        console.log(response);
+        console.log('response from handleResponse', response);
       },
       handleError: (err) => {
         // full control over handling token fetch Error
