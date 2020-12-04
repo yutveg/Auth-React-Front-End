@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import { TextField, Button } from '@material-ui/core';
 import { AuthForm } from './formStyles';
-import { useLoginMutation } from '../../generated/graphql';
+import { useLoginMutation, MeDocument, MeQuery } from '../../generated/graphql';
 import { RouteComponentProps } from 'react-router-dom';
 import { setAccessToken } from '../../accessToken';
 
@@ -20,6 +20,17 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
             variables: {
               email,
               password,
+            },
+            update: (store, { data }) => {
+              if (!data) {
+                return null;
+              }
+              store.writeQuery<MeQuery>({
+                query: MeDocument,
+                data: {
+                  me: data.login.user,
+                },
+              });
             },
           });
           if (response && response.data) {

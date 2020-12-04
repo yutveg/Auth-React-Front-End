@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { setAccessToken } from './accessToken';
 import Routes from './Routes';
+import Header from './components/Header';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -12,7 +13,6 @@ const App: React.FC = () => {
     })
       .then(async (res) => {
         const { accessToken } = await res.json();
-        console.log(res, 'our res');
         setAccessToken(accessToken);
         setLoading(false);
       })
@@ -25,6 +25,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <Header />
       <Routes />
     </div>
   );
