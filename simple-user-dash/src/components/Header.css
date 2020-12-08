@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  border-bottom: 1px solid #242424;
+}
+
+.navbar a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #242424;
+}
+
+.navbar a:hover {
+  color: #6b6b6b;
+}
