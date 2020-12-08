@@ -1,13 +1,14 @@
 import React from 'react';
 import { useMeQuery } from '../generated/graphql';
 import Nav from './Nav';
+import './Header.css';
 
 const Header: React.FC = () => {
   const { data } = useMeQuery({ fetchPolicy: 'network-only' });
 
   if (data && data.me) {
     return (
-      <div>
+      <div className="header">
         <h1>{data.me.email}</h1>
         <Nav />
       </div>
@@ -15,7 +16,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="header">
       <h1>Guest</h1>
       <Nav />
     </div>
